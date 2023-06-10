@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html>
+	<body>
+		<div align="center">
+			<h1>View Product</h1>
+			<table border="1" cellpadding="10">
+				<tr>
+					<th>Code</th>
+					<th>Description</th>
+					<th>Price</th>
+					<th>Action</th>
+				</tr>
+				<tr th:each="product : ${product}">
+					<td th:text="${product.code}"></td>
+					<td th:text="${product.description}"></td>
+					<td th:text="${product.price}"></td>
+					<td>
+						<form style="display: inline;" th:action="@{/{id}/edit(id=${product.code})}" method="post">
+							<input type="submit" value="Edit"/>
+						</form>
+						<form style="display: inline;" th:action="@{/{id}/delete(id=${product.code})}" method="post">
+							<input type="submit" value="Delete"/>
+						</form>
+					</td>
+				</tr>
+			</table>
+			<br>
+			<form th:action="@{/add}">
+				<input type="submit" value="Add product" />
+			</form>
+		</div>
+	</body>
+</html>
